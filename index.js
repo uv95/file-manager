@@ -1,8 +1,8 @@
-import process from 'node:process';
 import { homedir } from 'node:os';
 import { relative, join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readAndPrint } from './commands/readAndPrint.js';
+import { changeDirectory } from './commands/changeDirectory.js';
 
 greetUser();
 
@@ -24,6 +24,10 @@ process.stdin.on('data', (chunk) => {
   switch (commandName) {
     case 'cat':
       readAndPrint(...args.map((arg) => getPath(arg.trim())));
+      break;
+
+    case 'cd':
+      changeDirectory(getPath(args.join(' ').trim()));
       break;
 
     default:
