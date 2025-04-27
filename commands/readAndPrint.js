@@ -12,5 +12,5 @@ export const readAndPrint = (path) =>
     }
 
     const stream = createReadStream(path);
-    await pipeline(stream, process.stdout);
+    await pipeline(stream, process.stdout, { end: false });
   });

@@ -3,6 +3,7 @@ import { relative, join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readAndPrint } from './commands/readAndPrint.js';
 import { changeDirectory } from './commands/changeDirectory.js';
+import { createDirectory } from './commands/createDirectory.js';
 
 greetUser();
 
@@ -28,6 +29,10 @@ process.stdin.on('data', (chunk) => {
 
     case 'cd':
       changeDirectory(getPath(args.join(' ').trim()));
+      break;
+
+    case 'mkdir':
+      createDirectory(getPath(args.join(' ').trim()));
       break;
 
     default:
