@@ -24,15 +24,15 @@ process.stdin.on('data', (chunk) => {
 
   switch (commandName) {
     case 'cat':
-      readAndPrint(...args.map((arg) => getPath(arg.trim())));
+      readAndPrint(...args.map((arg) => getPath(arg)));
       break;
 
     case 'cd':
-      changeDirectory(getPath(args.join(' ').trim()));
+      changeDirectory(getPath(args.join(' ')));
       break;
 
     case 'mkdir':
-      createDirectory(getPath(args.join(' ').trim()));
+      createDirectory(getPath(args.join(' ')));
       break;
 
     default:
@@ -47,6 +47,6 @@ process.on('SIGINT', () => {
 });
 
 function getPath(path) {
-  const relativePath = relative(__dirname, path);
+  const relativePath = relative(__dirname, path.trim());
   return join(__dirname, relativePath);
 }
