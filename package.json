@@ -1,0 +1,25 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "RS school project",
+  "main": "index.js",
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uv95/file-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uv95/file-manager/issues"
+  },
+  "homepage": "https://github.com/uv95/file-manager#readme"
+}
