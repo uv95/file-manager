@@ -8,6 +8,7 @@ import { createFile } from './commands/createFile.js';
 import { copyFile } from './commands/copyFile.js';
 import { deleteFile } from './commands/deleteFile.js';
 import { moveFile } from './commands/moveFile.js';
+import { listFiles } from './commands/listFiles.js';
 
 greetUser();
 
@@ -25,7 +26,11 @@ process.stdin.on('data', (chunk) => {
   const [commandName, ...args] = chunk.toString().split(' ');
   const argsString = args.join(' ').trim();
 
-  switch (commandName) {
+  switch (commandName.trim()) {
+    case 'ls':
+      listFiles();
+      break;
+
     case 'cat':
       readAndPrint(...args.map((arg) => getPath(arg)));
       break;
