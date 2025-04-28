@@ -4,6 +4,7 @@ import { changeDirectory } from './commands/changeDirectory.js';
 import { createDirectory } from './commands/createDirectory.js';
 import { getPath } from './utils/getPath.js';
 import { renameFile } from './commands/renameFile.js';
+import { createFile } from './commands/createFile.js';
 
 greetUser();
 
@@ -24,6 +25,10 @@ process.stdin.on('data', (chunk) => {
   switch (commandName) {
     case 'cat':
       readAndPrint(...args.map((arg) => getPath(arg)));
+      break;
+
+    case 'add':
+      createFile(getPath(argsString));
       break;
 
     case 'cd':
