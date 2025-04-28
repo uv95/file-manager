@@ -6,6 +6,8 @@ import { getPath } from './utils/getPath.js';
 import { renameFile } from './commands/renameFile.js';
 import { createFile } from './commands/createFile.js';
 import { copyFile } from './commands/copyFile.js';
+import { deleteFile } from './commands/deleteFile.js';
+import { moveFile } from './commands/moveFile.js';
 
 greetUser();
 
@@ -46,6 +48,14 @@ process.stdin.on('data', (chunk) => {
 
     case 'cp':
       copyFile(argsString);
+      break;
+
+    case 'mv':
+      moveFile(argsString);
+      break;
+
+    case 'rm':
+      deleteFile(argsString);
       break;
 
     default:
