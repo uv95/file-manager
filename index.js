@@ -11,6 +11,8 @@ import { moveFile } from './commands/moveFile.js';
 import { listFiles } from './commands/listFiles.js';
 import { logOSInfo } from './commands/logOSInfo.js';
 import { hashFile } from './commands/hashFile.js';
+import { compressFile } from './commands/compressFile.js';
+import { decompressFile } from './commands/decompressFile.js';
 
 greetUser();
 
@@ -71,6 +73,14 @@ process.stdin.on('data', (chunk) => {
 
     case 'hash':
       hashFile(getPath(argsString));
+      break;
+
+    case 'compress':
+      compressFile(argsString);
+      break;
+
+    case 'decompress':
+      decompressFile(argsString);
       break;
 
     default:
