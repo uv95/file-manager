@@ -10,6 +10,7 @@ import { deleteFile } from './commands/deleteFile.js';
 import { moveFile } from './commands/moveFile.js';
 import { listFiles } from './commands/listFiles.js';
 import { logOSInfo } from './commands/logOSInfo.js';
+import { hashFile } from './commands/hashFile.js';
 
 greetUser();
 
@@ -66,6 +67,10 @@ process.stdin.on('data', (chunk) => {
 
     case 'os':
       logOSInfo(argsString);
+      break;
+
+    case 'hash':
+      hashFile(getPath(argsString));
       break;
 
     default:
