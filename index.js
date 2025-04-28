@@ -1,9 +1,9 @@
 import { homedir } from 'node:os';
-import { relative, join, dirname } from 'path';
-import { fileURLToPath } from 'url';
 import { readAndPrint } from './commands/readAndPrint.js';
 import { changeDirectory } from './commands/changeDirectory.js';
 import { createDirectory } from './commands/createDirectory.js';
+import { getPath } from './utils/getPath.js';
+import { renameFile } from './commands/renameFile.js';
 
 greetUser();
 
@@ -17,10 +17,9 @@ const homeDirectory = homedir();
 // console.log('currentWorkingDirectory', currentWorkingDirectory);
 // console.log('homeDirectory', homeDirectory);
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 process.stdin.on('data', (chunk) => {
   const [commandName, ...args] = chunk.toString().split(' ');
+  const argsString = args.join(' ').trim();
 
   switch (commandName) {
     case 'cat':
@@ -28,11 +27,15 @@ process.stdin.on('data', (chunk) => {
       break;
 
     case 'cd':
-      changeDirectory(getPath(args.join(' ')));
+      changeDirectory(getPath(argsString));
       break;
 
     case 'mkdir':
-      createDirectory(getPath(args.join(' ')));
+      createDirectory(getPath(argsString));
+      break;
+
+    case 'rn':
+      renameFile(argsString);
       break;
 
     default:
@@ -45,8 +48,3 @@ process.on('SIGINT', () => {
   console.log('\nGoodbye!');
   process.exit();
 });
-
-function getPath(path) {
-  const relativePath = relative(__dirname, path.trim());
-  return join(__dirname, relativePath);
-}
