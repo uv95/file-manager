@@ -9,6 +9,7 @@ import { copyFile } from './commands/copyFile.js';
 import { deleteFile } from './commands/deleteFile.js';
 import { moveFile } from './commands/moveFile.js';
 import { listFiles } from './commands/listFiles.js';
+import { logOSInfo } from './commands/logOSInfo.js';
 
 greetUser();
 
@@ -61,6 +62,10 @@ process.stdin.on('data', (chunk) => {
 
     case 'rm':
       deleteFile(argsString);
+      break;
+
+    case 'os':
+      logOSInfo(argsString);
       break;
 
     default:
