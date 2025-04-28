@@ -5,6 +5,7 @@ import { createDirectory } from './commands/createDirectory.js';
 import { getPath } from './utils/getPath.js';
 import { renameFile } from './commands/renameFile.js';
 import { createFile } from './commands/createFile.js';
+import { copyFile } from './commands/copyFile.js';
 
 greetUser();
 
@@ -41,6 +42,10 @@ process.stdin.on('data', (chunk) => {
 
     case 'rn':
       renameFile(argsString);
+      break;
+
+    case 'cp':
+      copyFile(argsString);
       break;
 
     default:

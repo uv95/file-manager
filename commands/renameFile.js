@@ -3,19 +3,12 @@ import { parse, format } from 'path';
 import { catchError } from '../utils/catchError.js';
 import { getPath } from '../utils/getPath.js';
 import { pathExists } from '../utils/pathExists.js';
+import { extractArgs } from '../utils/extractArgs.js';
 
 export const renameFile = (pathAndNewName) =>
   catchError(async () => {
-    let path = '';
-    let newName = '';
-    const match = pathAndNewName.match(/^(.+\.\w+)\s+(.+)$/);
-
-    if (match) {
-      path = getPath(match[1]);
-      newName = match[2];
-    }
-
-    const fileExists = await pathExists(path);
+    const { first: path, second: newName } = extractArgs(pathAndNewName);
+    const fileExists = await pathExists(getPath(path));
 
     if (!fileExists) {
       throw new Error('Operation failed');
