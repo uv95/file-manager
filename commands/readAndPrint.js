@@ -5,9 +5,9 @@ import { pipeline } from 'stream/promises';
 
 export const readAndPrint = (path) =>
   catchError(async () => {
-    const isFileExists = await pathExists(path);
+    const fileExists = await pathExists(path);
 
-    if (!isFileExists) {
+    if (!fileExists) {
       throw new Error('Operation failed');
     }
 
