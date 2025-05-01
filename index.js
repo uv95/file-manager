@@ -13,6 +13,7 @@ import { logOSInfo } from './commands/logOSInfo.js';
 import { hashFile } from './commands/hashFile.js';
 import { compressFile } from './commands/compressFile.js';
 import { decompressFile } from './commands/decompressFile.js';
+import { goUp } from './commands/goUp.js';
 
 greetUser();
 
@@ -20,21 +21,33 @@ function greetUser() {
   const username = process.argv.slice(2).join('').split('=')[1];
   console.log(`Welcome to the File Manager, ${username}!`);
 }
-const currentWorkingDirectory = process.cwd();
-const homeDirectory = homedir();
 
-// console.log('currentWorkingDirectory', currentWorkingDirectory);
-// console.log('homeDirectory', homeDirectory);
+const homeDirectory = homedir();
+process.chdir(homeDirectory);
 
 process.stdin.on('data', (chunk) => {
   const [commandName, ...args] = chunk.toString().split(' ');
   const argsString = args.join(' ').trim();
 
-  switch (commandName.trim()) {
-    case 'ls':
-      listFiles();
-      break;
+  if (!argsString.length) {
+    switch (commandName.trim()) {
+      case 'up':
+        goUp();
+        break;
 
+      case 'ls':
+        listFiles();
+        break;
+
+      default:
+        console.log('Operation failed\n');
+        break;
+    }
+
+    return;
+  }
+
+  switch (commandName.trim()) {
     case 'cat':
       readAndPrint(...args.map((arg) => getPath(arg)));
       break;
