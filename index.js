@@ -34,6 +34,9 @@ process.stdin.on('data', (chunk) => {
         listFiles();
         break;
 
+      case '.exit':
+        exit();
+
       default:
         console.log(messages.invalidInput);
         break;
@@ -98,9 +101,13 @@ process.stdin.on('data', (chunk) => {
 });
 
 process.on('SIGINT', () => {
+  exit();
+});
+
+function exit() {
   console.log(messages.goodbye(username));
   process.exit();
-});
+}
 
 function init() {
   console.log(messages.greeting(username));
