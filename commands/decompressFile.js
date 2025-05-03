@@ -10,6 +10,7 @@ import { parse } from 'path';
 export const decompressFile = (paths) =>
   catchError(async () => {
     const { first: pathToFile, second: pathToDestination } = extractArgs(paths);
+
     const pathToFileExists = await pathExists(getPath(pathToFile));
     const pathToDestinationExists = await pathExists(
       getPath(pathToDestination)

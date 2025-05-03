@@ -1,9 +1,11 @@
+import { messages } from './messages.js';
+
 export function extractArgs(argsString) {
   const args = {};
   const match = argsString.match(/^(.+\.\w+)\s+(.+)$/);
 
   if (!match) {
-    throw new Error('Operation failed\n');
+    throw new Error(messages.error);
   }
 
   args.first = match[1];

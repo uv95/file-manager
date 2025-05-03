@@ -14,16 +14,11 @@ import { hashFile } from './commands/hashFile.js';
 import { compressFile } from './commands/compressFile.js';
 import { decompressFile } from './commands/decompressFile.js';
 import { goUp } from './commands/goUp.js';
+import { messages } from './utils/messages.js';
 
-greetUser();
+const username = process.argv.slice(2).join('').split('=')[1] || 'Anonym';
 
-function greetUser() {
-  const username = process.argv.slice(2).join('').split('=')[1];
-  console.log(`Welcome to the File Manager, ${username}!`);
-}
-
-const homeDirectory = homedir();
-process.chdir(homeDirectory);
+init();
 
 process.stdin.on('data', (chunk) => {
   const [commandName, ...args] = chunk.toString().split(' ');
@@ -40,7 +35,7 @@ process.stdin.on('data', (chunk) => {
         break;
 
       default:
-        console.log('Operation failed\n');
+        console.log(messages.invalidInput);
         break;
     }
 
@@ -49,7 +44,7 @@ process.stdin.on('data', (chunk) => {
 
   switch (commandName.trim()) {
     case 'cat':
-      readAndPrint(...args.map((arg) => getPath(arg)));
+      readAndPrint(getPath(argsString));
       break;
 
     case 'add':
@@ -97,12 +92,17 @@ process.stdin.on('data', (chunk) => {
       break;
 
     default:
-      console.log('Operation failed\n');
+      console.log(messages.invalidInput);
       break;
   }
 });
 
 process.on('SIGINT', () => {
-  console.log('\nGoodbye!');
+  console.log(messages.goodbye(username));
   process.exit();
 });
+
+function init() {
+  console.log(messages.greeting(username));
+  process.chdir(homedir());
+}

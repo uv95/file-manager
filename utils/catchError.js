@@ -1,9 +1,10 @@
+import { messages } from './messages.js';
+
 export const catchError = async (fn) => {
   try {
     await fn();
-    console.log(`You are currently in ${process.cwd()}`);
+    console.log(messages.currentDir(process.cwd()));
   } catch (error) {
-    // console.log('💥 ERROR: ', error);
-    console.log('💥 ERROR');
+    console.error(messages.error);
   }
 };

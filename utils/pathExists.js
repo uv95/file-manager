@@ -5,6 +5,6 @@ export async function pathExists(path) {
     await access(path);
     return true;
   } catch (error) {
-    return error;
+    return false;
   }
 }
