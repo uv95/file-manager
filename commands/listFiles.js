@@ -1,4 +1,4 @@
-import { readdir } from 'fs/promises';
+import { readdir } from 'node:fs/promises';
 import { catchError } from '../utils/catchError.js';
 
 export const listFiles = () =>

@@ -31,8 +31,10 @@ export const logOSInfo = (arg) => {
 
     default:
       console.log(messages.invalidInput);
+      console.log(messages.enterCommand);
       return;
   }
 
   console.log(messages.currentDir(process.cwd()));
+  console.log(messages.enterCommand);
 };

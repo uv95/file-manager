@@ -1,4 +1,4 @@
-import { mkdir } from 'fs/promises';
+import { mkdir } from 'node:fs/promises';
 import { catchError } from '../utils/catchError.js';
 
 export const createDirectory = (path) =>

@@ -1,4 +1,4 @@
-import { writeFile } from 'fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { catchError } from '../utils/catchError.js';
 
 export const createFile = (path) =>

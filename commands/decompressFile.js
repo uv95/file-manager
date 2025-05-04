@@ -1,11 +1,11 @@
-import { createReadStream, createWriteStream } from 'fs';
-import { pipeline } from 'stream/promises';
-import { createBrotliDecompress } from 'zlib';
+import { createReadStream, createWriteStream } from 'node:fs';
+import { pipeline } from 'node:stream/promises';
+import { createBrotliDecompress } from 'node:zlib';
 import { catchError } from '../utils/catchError.js';
 import { extractArgs } from '../utils/extractArgs.js';
 import { getPath } from '../utils/getPath.js';
 import { pathExists } from '../utils/pathExists.js';
-import { parse } from 'path';
+import { parse } from 'node:path';
 
 export const decompressFile = (paths) =>
   catchError(async () => {
@@ -19,7 +19,7 @@ export const decompressFile = (paths) =>
     const isPathToFileCorrect = parse(pathToFile).ext === '.br';
 
     if (!pathToFileExists || pathToDestinationExists || !isPathToFileCorrect) {
-      throw new Error('Operation failed\n');
+      throw new Error();
     }
 
     const readStream = createReadStream(pathToFile);

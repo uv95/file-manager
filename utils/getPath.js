@@ -1,9 +1,6 @@
-import { relative, join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { relative, resolve } from 'node:path';
 
 export function getPath(path) {
-  const relativePath = relative(__dirname, path);
-  return join(__dirname, relativePath);
+  const relativePath = relative(process.cwd(), path);
+  return resolve(process.cwd(), relativePath);
 }

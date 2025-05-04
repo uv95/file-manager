@@ -1,11 +1,11 @@
-import { createReadStream, createWriteStream } from 'fs';
+import { createReadStream, createWriteStream } from 'node:fs';
 import { catchError } from '../utils/catchError.js';
 import { pathExists } from '../utils/pathExists.js';
-import { pipeline } from 'stream/promises';
+import { pipeline } from 'node:stream/promises';
 import { extractArgs } from '../utils/extractArgs.js';
 import { getPath } from '../utils/getPath.js';
-import { join, parse } from 'path';
-import { unlink } from 'fs/promises';
+import { join, parse } from 'node:path';
+import { unlink } from 'node:fs/promises';
 
 export const moveFile = (paths) =>
   catchError(async () => {
@@ -20,7 +20,7 @@ export const moveFile = (paths) =>
     const targetPathExists = await pathExists(targetPath);
 
     if (!srcPathExists || targetPathExists) {
-      throw new Error('Operation failed\n');
+      throw new Error();
     }
 
     const readStream = createReadStream(srcPath);

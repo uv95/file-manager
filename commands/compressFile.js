@@ -1,11 +1,11 @@
-import { createReadStream, createWriteStream } from 'fs';
-import { pipeline } from 'stream/promises';
-import { createBrotliCompress } from 'zlib';
+import { createReadStream, createWriteStream } from 'node:fs';
+import { pipeline } from 'node:stream/promises';
+import { createBrotliCompress } from 'node:zlib';
 import { catchError } from '../utils/catchError.js';
 import { extractArgs } from '../utils/extractArgs.js';
 import { getPath } from '../utils/getPath.js';
 import { pathExists } from '../utils/pathExists.js';
-import { parse } from 'path';
+import { parse } from 'node:path';
 
 export const compressFile = (paths) =>
   catchError(async () => {

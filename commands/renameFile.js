@@ -1,5 +1,5 @@
-import { rename } from 'fs/promises';
-import { parse, format } from 'path';
+import { rename } from 'node:fs/promises';
+import { parse, format } from 'node:path';
 import { catchError } from '../utils/catchError.js';
 import { extractArgs } from '../utils/extractArgs.js';
 
