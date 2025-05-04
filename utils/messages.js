@@ -7,4 +7,5 @@ export const messages = {
   error: '\x1b[31mOperation failed!\x1b[0m',
   currentDir: (currentDir) =>
     `\x1b[36mYou are currently in \x1b[33m${currentDir}\x1b[0m`,
+  enterCommand: '\n\x1b[34mEnter command:\x1b[0m',
 };

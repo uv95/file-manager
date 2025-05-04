@@ -39,6 +39,8 @@ process.stdin.on('data', (chunk) => {
 
       default:
         console.log(messages.invalidInput);
+        console.log(messages.enterCommand);
+
         break;
     }
 
@@ -96,6 +98,7 @@ process.stdin.on('data', (chunk) => {
 
     default:
       console.log(messages.invalidInput);
+      console.log(messages.enterCommand);
       break;
   }
 });
@@ -111,5 +114,8 @@ function exit() {
 
 function init() {
   console.log(messages.greeting(username));
-  process.chdir(homedir());
+  const homeDirectory = homedir();
+  process.chdir(homeDirectory);
+  console.log(messages.currentDir(homeDirectory));
+  console.log(messages.enterCommand);
 }

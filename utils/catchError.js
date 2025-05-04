@@ -7,4 +7,6 @@ export const catchError = async (fn) => {
   } catch (error) {
     console.error(messages.error);
   }
+
+  console.log(messages.enterCommand);
 };
