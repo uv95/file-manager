@@ -90,4 +90,7 @@ Features:
     ```bash
     decompress path_to_file path_to_destination
     ```  
-    
+## The program is started by npm-script `start` in following way:
+```bash
+npm run start -- --username=your_username
+```
